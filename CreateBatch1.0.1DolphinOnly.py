@@ -6,7 +6,7 @@ import os
 from guizero import App, Text, PushButton, TextBox, Picture, Window
 import shutil
 import subprocess
-import Image
+#import Image
 
 #ask user for name of game they downloaded
 print("What is the name of the game? ")
