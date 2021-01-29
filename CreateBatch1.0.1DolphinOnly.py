@@ -12,21 +12,18 @@ import subprocess
 print("What is the name of the game? ")
 ROMname = str(input())
 
-#path variables here
+#centralize all path variables here
 print("Please find the path where your emulators are stored: ")
 EmulatorLibraryPath =str(input())+"\\"
 print("Please find the path where your dolphin executable is stored: ")
 DolphinPath = str(input())
-##7zip path to be hard set if needed and commented out in line 27
-#print("Please find where your 7zip executable is stored: ")
-#zippath= str(input([your path]))
 
 #check if user downloaded 7zip
-print("Have you downloaded 7zip archive software?")
+print("Have you downloaded 7zip archive software? (Yes/No)")
 zipStatus = str(input())
 if zipStatus == 'Yes' or zipStatus == 'yes':
     print("Please find where your 7zip executable is stored: ")
-    zippath = str(input())
+    zipPath = str(input())
     #continue
 else:
     print("7zip software must be installed")
@@ -43,7 +40,7 @@ def ZipPlacement():
 for f_name in os.listdir(EmulatorLibraryPath):
     if f_name.startswith(ROMname):
             FileToZip = f_name
-            print("This is the file you are looking for: " +FileToZip)
+            print("This is the file you are looking for: " +FileToZip) #Perhaps pose a question here instead of below
             y+=1  #to let me know i found the file and need to break
             break
     else:
@@ -56,15 +53,15 @@ print("What is the name of the console this game is on?")
 Console = str(input())
 
 #setting command for cmd
-cmd ='"'+zippath+'"'+''+' e '+''+'"'+EmulatorLibraryPath+FileToZip+'" -o"'+DolphinPath+'" *.iso -mx5'
+cmd ='"'+zipPath+'"'+''+' e '+''+'"'+EmulatorLibraryPath+FileToZip+'" -o"'+DolphinPath+'" *.iso -mx5'
 
 #################section for Gamecube/Wii emulators#########################
 
 if Console =="Gamecube" or Console == "gamecube" or Console== "gameCube" or Console== "GameCube" or Console =="Nintendo Wii" or Console == "wii" or Console== "Wii":
     ####unzipping a file (copy and paste)
-    print("Do you wish to unzip this file: " +FileToZip)
+    print("Do you wish to unzip this file (Yes/No): " +FileToZip)
     ZipAnswer = str(input())
-    if ZipAnswer == "yes":
+    if ZipAnswer == "yes" or ZipAnswer == "Yes":
         if x != 1:
             print('Please copy the following into the open terminal:\n')
             print(cmd)
@@ -112,4 +109,4 @@ if Console =="Gamecube" or Console == "gamecube" or Console== "gameCube" or Cons
     
 #####################section for other emulators#######################
 else:
-    print("The specified Emulator is not recognized")
+    print("The specified Emulator is not supported")
